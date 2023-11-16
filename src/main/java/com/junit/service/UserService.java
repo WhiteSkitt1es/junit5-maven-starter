@@ -20,6 +20,9 @@ public class UserService {
         this.users.addAll(Arrays.asList(users));
     }
     public Optional<User> login(String userName, String password) {
+        if (userName == null || password == null) {
+            throw new IllegalArgumentException("username or password is null");
+        }
         return users.stream()
                 .filter(user -> user.getUserName().equals(userName))
                 .filter(user -> user.getPassword().equals(password))
